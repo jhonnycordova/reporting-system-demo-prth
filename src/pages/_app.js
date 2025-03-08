@@ -146,9 +146,9 @@ function DefaultLayout({ children }) {
             <div id="sidebarMenu" className={`flex-shrink-0 bg-white d-sm-block col-sm-3 col-lg-2 bg-light sidebar collapse`}>
             <ul className="list-unstyled ps-0 pt-5">
               <TopLevelMenuItem href="/" text="Home" />
-              <CollapsibleMenuItem text="Reports" name="etl" expanded={etlExpanded}>
-                <MenuItem href="/etl/new">Report Builder</MenuItem>
-                <MenuItem href="/etl/list">List</MenuItem>
+              <CollapsibleMenuItem text="Reports" name="report" expanded={etlExpanded}>
+                <MenuItem href="/report/new">Report Builder</MenuItem>
+                <MenuItem href="/report/list">List</MenuItem>
               </CollapsibleMenuItem>
               <CollapsibleMenuItem text="Destinations" name="destination" expanded={destinationExpanded}>
                 <MenuItem href="/destination/new">Create Destination</MenuItem>
