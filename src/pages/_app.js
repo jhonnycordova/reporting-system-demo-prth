@@ -150,10 +150,10 @@ function DefaultLayout({ children }) {
                 <MenuItem href="/report/new">Report Builder</MenuItem>
                 <MenuItem href="/report/list">List</MenuItem>
               </CollapsibleMenuItem>
-              <CollapsibleMenuItem text="Destinations" name="destination" expanded={destinationExpanded}>
+              {/* <CollapsibleMenuItem text="Destinations" name="destination" expanded={destinationExpanded}>
                 <MenuItem href="/destination/new">Create Destination</MenuItem>
                 <MenuItem href="/destination/list">List</MenuItem>
-              </CollapsibleMenuItem>
+              </CollapsibleMenuItem> */}
 
               <li className="border-top my-3"></li>
               <CollapsibleMenuItem text="Account" name="account">
