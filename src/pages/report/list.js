@@ -33,7 +33,11 @@ export default function Page() {
                     </div>
                     <div className="d-flex justify-content-end">
                         <button className="btn btn-primary btn-sm me-2">Run Now</button>
-                        <button className="btn btn-light-gray btn-sm">View Details</button>
+                        <button className="btn btn-light-gray btn-sm">
+                        <Link href="/report/example1">
+                          View Details
+                        </Link>
+                        </button>
                     </div>
                 </div>
 
@@ -56,7 +60,11 @@ export default function Page() {
                     </div>
                     <div className="d-flex justify-content-end">
                         <button className="btn btn-primary btn-sm me-2">Run Now</button>
-                        <button className="btn btn-light-gray btn-sm">View Details</button>
+                        <button className="btn btn-light-gray btn-sm">
+                        <Link href="/report/example2">
+                          View Details
+                        </Link>
+                        </button>
                     </div>
                 </div>
 
@@ -77,7 +85,11 @@ export default function Page() {
                     </div>
                     <div className="d-flex justify-content-end">
                         <button className="btn btn-primary btn-sm me-2">Run Now</button>
-                        <button className="btn btn-light-gray btn-sm">View Details</button>
+                        <button className="btn btn-light-gray btn-sm">
+                        <Link href="/report/example3">
+                          View Details
+                        </Link>
+                        </button>
                     </div>
                 </div>
 

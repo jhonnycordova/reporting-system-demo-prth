@@ -9,7 +9,7 @@ export default function Page() {
       <div className="card-custom mb-4">
         <div className="d-flex justify-content-between align-items-center">
           <div>
-            <h4 className="fw-bold mb-1">Monthly User Activity</h4>
+            <h4 className="fw-bold mb-1">Age Demographics</h4>
             <p className="text-muted">Track user engagement and activity levels on a monthly basis</p>
           </div>
           <div>
