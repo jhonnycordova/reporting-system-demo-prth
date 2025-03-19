@@ -102,6 +102,7 @@ function CollapsibleMenuItem({children, name, text, expanded}) {
   );
 }
 
+
 function DefaultLayout({ children }) {
 
   const [sourceExpanded, setSourceExpanded] = useState(false);
@@ -150,11 +151,15 @@ function DefaultLayout({ children }) {
                 <MenuItem href="/report/new">Report Builder</MenuItem>
                 <MenuItem href="/report/list">List</MenuItem>
               </CollapsibleMenuItem>
-              {/* <CollapsibleMenuItem text="Destinations" name="destination" expanded={destinationExpanded}>
-                <MenuItem href="/destination/new">Create Destination</MenuItem>
-                <MenuItem href="/destination/list">List</MenuItem>
-              </CollapsibleMenuItem> */}
-
+              <li className="border-top my-3"></li>
+              <CollapsibleMenuItem text="Projects" name="project" expanded={destinationExpanded}>
+                  <MenuItem href="/project/new">Create Project</MenuItem>
+                  <MenuItem href="/project/list">List</MenuItem>
+              </CollapsibleMenuItem>
+              <CollapsibleMenuItem text="Users" name="user" expanded={destinationExpanded}>
+                  <MenuItem href="/user/new">Create User</MenuItem>
+                  <MenuItem href="/user/list">List</MenuItem>
+              </CollapsibleMenuItem>
               <li className="border-top my-3"></li>
               <CollapsibleMenuItem text="Account" name="account">
                 <MenuItem href="#" onClick={()=>{}}>Sign out</MenuItem>
@@ -189,7 +194,7 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Data Integration Tool</title>
+        <title>Reporting System Demo</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DefaultLayout>
