@@ -4,11 +4,11 @@ export default function Page() {
 
   return (
     <div>
-      <h1 className="h3 mb-3">Available Reports</h1>
+      <h1 className="h3 mb-3">Available Report Templates</h1>
       
       <div className="container mt-4">
       <div class="mb-4">
-            <input type="text" id="searchInput" class="form-control" placeholder="Search reports..." onkeyup="filterReports()" />
+            <input type="text" id="searchInput" class="form-control" placeholder="Search templates..." onkeyup="filterReports()" />
         </div>
         <div className="row justify-content-center">
             <div className="col-lg-12">
@@ -16,7 +16,7 @@ export default function Page() {
                 
                 <div className="report-card mb-4">
                     <div className="d-flex justify-content-between align-items-center">
-                        <h5 className="fw-bold mb-1">Monthly User Activity</h5>
+                        <h5 className="fw-bold mb-1">Juul Report</h5>
                         <span className="status-active">▶ Active</span>
                     </div>
                     <p className="text-muted small">Track user engagement and activity levels on a monthly basis</p>
@@ -32,7 +32,6 @@ export default function Page() {
                         <span className="pill">joinDate</span>
                     </div>
                     <div className="d-flex justify-content-end">
-                        <button className="btn btn-primary btn-sm me-2">Run Now</button>
                         <button className="btn btn-light-gray btn-sm">
                         <Link href="/report/example1">
                           View Details
@@ -59,7 +58,6 @@ export default function Page() {
                         <span className="pill">joinDate</span>
                     </div>
                     <div className="d-flex justify-content-end">
-                        <button className="btn btn-primary btn-sm me-2">Run Now</button>
                         <button className="btn btn-light-gray btn-sm">
                         <Link href="/report/example2">
                           View Details
@@ -84,7 +82,6 @@ export default function Page() {
                         <span className="pill">age</span>
                     </div>
                     <div className="d-flex justify-content-end">
-                        <button className="btn btn-primary btn-sm me-2">Run Now</button>
                         <button className="btn btn-light-gray btn-sm">
                         <Link href="/report/example3">
                           View Details
