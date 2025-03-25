@@ -147,8 +147,17 @@ function DefaultLayout({ children }) {
             <div id="sidebarMenu" className={`flex-shrink-0 bg-white d-sm-block col-sm-3 col-lg-2 bg-light sidebar collapse`}>
             <ul className="list-unstyled ps-0 pt-5">
               <TopLevelMenuItem href="/" text="Home" />
+              <li className="mb-1">
+                <div className="list-group-item border-0 px-3 py-2">
+                  <select id="projectSelector" className="form-select form-select-sm">
+                    <option value="proj1">Project 1</option>
+                    <option value="proj2">Project 2</option>
+                    <option value="proj3">Project 3</option>
+                  </select>
+                </div>
+              </li>
+
               <CollapsibleMenuItem text="Reports" name="report" expanded={etlExpanded}>
-                <MenuItem href="/report/new">Report Builder</MenuItem>
                 <MenuItem href="/report/list">List</MenuItem>
               </CollapsibleMenuItem>
               <li className="border-top my-3"></li>
