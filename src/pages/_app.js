@@ -158,16 +158,11 @@ function DefaultLayout({ children }) {
               </li>
 
               <CollapsibleMenuItem text="Reports" name="report" expanded={etlExpanded}>
-                <MenuItem href="/report/list">List</MenuItem>
+                <MenuItem href="/report/list">List Templates</MenuItem>
               </CollapsibleMenuItem>
               <li className="border-top my-3"></li>
-              <CollapsibleMenuItem text="Projects" name="project" expanded={destinationExpanded}>
-                  <MenuItem href="/project/new">Create Project</MenuItem>
-                  <MenuItem href="/project/list">List</MenuItem>
-              </CollapsibleMenuItem>
               <CollapsibleMenuItem text="Users" name="user" expanded={destinationExpanded}>
-                  <MenuItem href="/user/new">Create User</MenuItem>
-                  <MenuItem href="/user/list">List</MenuItem>
+                  <MenuItem href="/user/list">List Users</MenuItem>
               </CollapsibleMenuItem>
               <li className="border-top my-3"></li>
               <CollapsibleMenuItem text="Account" name="account">
