@@ -8,8 +8,8 @@ export default function Page() {
       <table className="table align-middle mb-0 bg-white">
         <thead className="bg-light">
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Name</th>
+            <th>Roles</th>
             <th>Email</th>
             <th>Updated At</th>
             <th>Status</th>
@@ -21,13 +21,13 @@ export default function Page() {
               <div className="d-flex align-items-center">
                 <div>
                   <Link href={'/source/list'} className="link-dark rounded">
-                    Bocelli
+                    Bocelli Hu
                   </Link>
                 </div>
               </div>
             </td>
             <td>
-              <p className="fw-normal mb-1">Hu</p>
+              <p className="fw-normal mb-1">Admin, Creator </p>
             </td>
             <td>
              bocelli.hu@prth.com
@@ -44,13 +44,13 @@ export default function Page() {
               <div className="d-flex align-items-center">
                 <div>
                   <Link href={'/source/list'} className="link-dark rounded">
-                  Sriram 
+                  Sriram Krishnamurthy
                   </Link>
                 </div>
               </div>
             </td>
             <td>
-              <p className="fw-normal mb-1">Krishnamurthy</p>
+              <p className="fw-normal mb-1">Admin, Creator </p>
             </td>
             <td>
                sriram.krishnamurthy@prth.com
@@ -67,13 +67,13 @@ export default function Page() {
               <div className="d-flex align-items-center">
                 <div>
                   <Link href={'/source/list'} className="link-dark rounded">
-                    Jhonny
+                    Jhonny Cordova
                   </Link>
                 </div>
               </div>
             </td>
             <td>
-              <p className="fw-normal mb-1">Cordova</p>
+              <p className="fw-normal mb-1">Admin, Creator</p>
             </td>
             <td>
                 ctr.jhonny.cordova@prth.com
@@ -90,13 +90,13 @@ export default function Page() {
               <div className="d-flex align-items-center">
                 <div>
                   <Link href={'/source/list'} className="link-dark rounded">
-                    Kayode
+                    Kayode Mears
                   </Link>
                 </div>
               </div>
             </td>
             <td>
-              <p className="fw-normal mb-1">Mears</p>
+              <p className="fw-normal mb-1">Creator</p>
             </td>
             <td>
             ctr.kayode.mears@prth.com
