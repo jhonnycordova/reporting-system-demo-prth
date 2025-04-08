@@ -158,7 +158,8 @@ function DefaultLayout({ children }) {
               </li>
 
               <CollapsibleMenuItem text="Reports" name="report" expanded={etlExpanded}>
-                <MenuItem href="/report/list">List Templates</MenuItem>
+                <MenuItem href="/template/list">Template List</MenuItem>
+                <MenuItem href="/report/list">Report List</MenuItem>
               </CollapsibleMenuItem>
               <li className="border-top my-3"></li>
               <CollapsibleMenuItem text="Users" name="user" expanded={destinationExpanded}>
