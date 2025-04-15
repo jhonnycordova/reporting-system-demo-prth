@@ -74,6 +74,11 @@ export default function Page() {
               <div className="modal-body">
                 <form id="reportForm">
 
+                  <div className="mb-3">
+                    <label htmlFor="merchantId" className="form-label">Name</label>
+                    <input type="text" className="form-control" id="merchantId" name="merchantId" required />
+                  </div>
+
                   {/* Date From */}
                   <div className="mb-3">
                     <label htmlFor="dateFrom" className="form-label">Date From</label>

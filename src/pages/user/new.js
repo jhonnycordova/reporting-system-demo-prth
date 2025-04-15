@@ -27,12 +27,12 @@ export default function CreateUserPage() {
 
   return (
     <div className="container mt-4">
-      <Link href="/project/list" className="text-secondary mb-3 d-inline-block">
-        ← Back to Project List
+      <Link href="/user/list" className="text-secondary mb-3 d-inline-block">
+        ← Back to Users List
       </Link>
 
       <div className="card-custom p-4">
-        <h4 className="fw-bold mb-4">Create New Project</h4>
+        <h4 className="fw-bold mb-4">Create New User</h4>
 
         <form onSubmit={handleSubmit}>
           {/* Name */}
@@ -46,6 +46,41 @@ export default function CreateUserPage() {
               onChange={(e) => setName(e.target.value)}
               required
             />
+          </div>
+
+          {/* Email */}
+          <div className="mb-3">
+            <label htmlFor="userEmail" className="form-label">Email</label>
+            <input
+              type="email"
+              id="userEmail"
+              className="form-control"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Roles */}
+          <div className="mb-3">
+            <label className="form-label">Roles</label>
+            <div>
+              {roleOptions.map((role) => (
+                <div className="form-check form-check-inline" key={role}>
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id={`role-${role}`}
+                    value={role}
+                    checked={roles.includes(role)}
+                    onChange={handleRoleChange}
+                  />
+                  <label className="form-check-label" htmlFor={`role-${role}`}>
+                    {role}
+                  </label>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Status */}
@@ -64,10 +99,10 @@ export default function CreateUserPage() {
 
           {/* Buttons */}
           <div className="d-flex justify-content-end">
-            <Link href="/project/list" className="btn btn-secondary me-2">
+            <Link href="/user/list" className="btn btn-secondary me-2">
               Cancel
             </Link>
-            <button type="submit" className="btn btn-primary">Create Project</button>
+            <button type="submit" className="btn btn-primary">Create User</button>
           </div>
         </form>
       </div>

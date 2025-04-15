@@ -74,6 +74,11 @@ export default function Page() {
                 <form id="reportForm">
 
                   <div className="mb-3">
+                    <label htmlFor="merchantId" className="form-label">Name</label>
+                    <input type="text" className="form-control" id="merchantId" name="merchantId" required />
+                  </div>
+
+                  <div className="mb-3">
                     <label for="dateFrom" className="form-label">Date From</label>
                     <input type="date" className="form-control" id="dateFrom" name="dateFrom" required />
                   </div>
