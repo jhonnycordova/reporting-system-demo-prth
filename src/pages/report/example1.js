@@ -1,44 +1,84 @@
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Page() {
-  const frequency = "Monthly";
-  const customFields = ["Start Date", "End Date", "User Segment"];
-  const templateUsed = "TEMPLATE A";
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [name, setName] = useState("Report 1");
+  const [frequency, setFrequency] = useState("Monthly");
+  const [templateUsed] = useState("TEMPLATE A");
 
-  const deliveryMethod = "EMAIL";
-  const deliveryEmails = ["marketing@company.com", "admin@company.com"];
+  const [deliveryMethod, setDeliveryMethod] = useState("EMAIL");
+  const [deliveryEmails, setDeliveryEmails] = useState([
+    "marketing@company.com",
+    "admin@company.com",
+  ]);
+
+  const customFields = ["Start Date", "End Date", "User Segment"];
 
   const reportHistory = [
     {
       date: "3/14/2024",
       status: "Sent",
       downloadLink: "/downloads/report1-mar2024.pdf",
+      parameters: {
+        merchantId: "TEST",
+      },
     },
     {
       date: "2/14/2024",
       status: "Sent",
       downloadLink: "/downloads/report1-feb2024.pdf",
+      parameters: {
+        merchantId: "TEST2",
+      },
     },
     {
       date: "1/14/2024",
       status: "Sent",
       downloadLink: "/downloads/report1-jan2024.pdf",
+      parameters: {
+        merchantId: "TEST3",
+      },
     },
   ];
+
+  const addEmail = () => {
+    setDeliveryEmails([...deliveryEmails, ""]);
+  };
+
+  const updateEmail = (index, value) => {
+    const updated = [...deliveryEmails];
+    updated[index] = value;
+    setDeliveryEmails(updated);
+  };
+
+  const removeEmail = (index) => {
+    const updated = [...deliveryEmails];
+    updated.splice(index, 1);
+    setDeliveryEmails(updated);
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    setShowEditModal(false);
+  };
 
   return (
     <div className="container mt-4">
       <Link className="text-secondary mb-3 d-inline-block" href="/report/list">
         ← Back to Reports List
       </Link>
-      
+
       <div className="card-custom mb-4">
-        <div className="d-flex justify-content-between align-items-center">
+        <div className="d-flex justify-content-between align-items-start">
           <div>
-            <h4 className="fw-bold mb-1">Report 1</h4>
+            <h4 className="fw-bold mb-1">{name}</h4>
             <p className="text-muted">Track user engagement and activity levels on a monthly basis</p>
           </div>
-          <div>
+          <div className="text-end">
+            <button className="btn btn-outline-secondary btn-sm me-2" onClick={() => setShowEditModal(true)}>
+              ✏️ Edit
+            </button>
             <span className="status-badge">▶ Active</span>
           </div>
         </div>
@@ -70,7 +110,9 @@ export default function Page() {
               <small className="text-muted">🧩 Custom Fields</small>
               <ul className="mb-0 mt-1 ps-3">
                 {customFields.map((field, index) => (
-                  <li key={index} className="fw-normal">{field}</li>
+                  <li key={index} className="fw-normal">
+                    {field}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -88,7 +130,9 @@ export default function Page() {
               <small className="text-muted">📧 Email Recipients</small>
               <ul className="mb-0 mt-1 ps-3">
                 {deliveryEmails.map((email, index) => (
-                  <li key={index} className="fw-normal">{email}</li>
+                  <li key={index} className="fw-normal">
+                    {email}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -103,6 +147,7 @@ export default function Page() {
             <thead className="table-light">
               <tr>
                 <th>Date</th>
+                <th>Parameters</th>
                 <th>Status</th>
                 <th>Download</th>
               </tr>
@@ -111,6 +156,15 @@ export default function Page() {
               {reportHistory.map((entry, index) => (
                 <tr key={index}>
                   <td>{entry.date}</td>
+                  <td>
+                    <ul className="mb-0">
+                      {Object.entries(entry.parameters).map(([key, value], idx) => (
+                        <li key={idx} className="fw-normal">
+                          {`${key}: ${value}`}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
                   <td>{entry.status}</td>
                   <td>
                     <a href={entry.downloadLink} className="btn btn-sm btn-outline-secondary" download>
@@ -123,6 +177,98 @@ export default function Page() {
           </table>
         </div>
       </div>
+
+      {/* Edit Modal */}
+      {showEditModal && (
+        <div className="modal fade show d-block" tabIndex="-1" role="dialog">
+          <div className="modal-dialog modal-lg" role="document">
+            <div className="modal-content">
+              <form onSubmit={handleSave}>
+                <div className="modal-header">
+                  <h5 className="modal-title">Edit Report</h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    onClick={() => setShowEditModal(false)}
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <div className="mb-3">
+                    <label className="form-label">Report Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">Frequency</label>
+                    <select
+                      className="form-select"
+                      value={frequency}
+                      onChange={(e) => setFrequency(e.target.value)}
+                    >
+                      <option value="Daily">Daily</option>
+                      <option value="Weekly">Weekly</option>
+                      <option value="Monthly">Monthly</option>
+                    </select>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">Delivery Method</label>
+                    <select
+                      className="form-select"
+                      value={deliveryMethod}
+                      onChange={(e) => setDeliveryMethod(e.target.value)}
+                    >
+                      <option value="EMAIL">Email</option>
+                      <option value="SFTP">SFTP</option>
+                      <option value="Slack">Slack</option>
+                    </select>
+                  </div>
+
+                  {deliveryMethod === "EMAIL" && (
+                    <div className="mb-3">
+                      <label className="form-label">Email Recipients</label>
+                      {deliveryEmails.map((email, index) => (
+                        <div className="input-group mb-2" key={index}>
+                          <input
+                            type="email"
+                            className="form-control"
+                            value={email}
+                            onChange={(e) => updateEmail(index, e.target.value)}
+                          />
+                          <button
+                            type="button"
+                            className="btn btn-outline-danger"
+                            onClick={() => removeEmail(index)}
+                            disabled={deliveryEmails.length === 1}
+                          >
+                            &times;
+                          </button>
+                        </div>
+                      ))}
+                      <button type="button" className="btn btn-sm btn-secondary" onClick={addEmail}>
+                        + Add Email
+                      </button>
+                    </div>
+                  )}
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" onClick={() => setShowEditModal(false)}>
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn btn-primary">
+                    Save Changes
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

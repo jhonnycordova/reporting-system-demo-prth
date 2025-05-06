@@ -40,7 +40,11 @@ export default function Page() {
       <h1 className="h3 mb-3">Report List</h1>
 
       {/* Search Input */}
-      <div className="mb-3">
+      
+
+      {/* Filtros adicionales (HTML visual, sin lógica) */}
+      <div className="row g-3 mb-4">
+      <div className="mb-3 col-md-3">
         <input
           type="text"
           className="form-control"
@@ -48,6 +52,47 @@ export default function Page() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+      </div>
+        <div className="col-md-3">
+          <input type="text" className="form-control" placeholder="Filter by creator..." />
+        </div>
+        <div className="col-md-2">
+          <select className="form-select">
+            <option value="">Frequency</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+        </div>
+        <div className="col-md-2">
+          <input type="date" className="form-control" placeholder="Created date" />
+        </div>
+        <div className="col-md-2">
+          <input type="date" className="form-control" placeholder="Updated date" />
+        </div>
+        <div className="col-md-2">
+          <select className="form-select">
+            <option value="">Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+        <div className="col-md-2">
+          <select className="form-select">
+            <option value="">Delivery Method</option>
+            <option value="email">Email</option>
+            <option value="sftp">SFTP</option>
+            <option value="slack">Slack</option>
+          </select>
+        </div>
+        <div className="col-md-3">
+          <select className="form-select">
+            <option value="">Template</option>
+            <option value="template-a">TEMPLATE A</option>
+            <option value="template-b">TEMPLATE B</option>
+            <option value="template-c">TEMPLATE C</option>
+          </select>
+        </div>
       </div>
 
       {/* Reports Table */}
