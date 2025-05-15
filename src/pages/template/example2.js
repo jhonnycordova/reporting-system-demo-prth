@@ -116,6 +116,13 @@ export default function Page() {
 
               <div className="modal-body">
                 <form id="reportForm">
+                <div className="mb-3">
+                    <label htmlFor="name" className="form-label">
+                      Date
+                    </label>
+                    <input type="date" className="form-control" id="date" name="date" required />
+                  </div>
+
                   <div className="mb-3">
                     <label htmlFor="name" className="form-label">
                       Name
@@ -227,13 +234,15 @@ export default function Page() {
                     <th>Name</th>
                     <th>Created At</th>
                     <th>Status</th>
-                    <th>Download</th>
                   </tr>
                 </thead>
                 <tbody>
                   {generatedReports.map((report) => (
                     <tr key={report.id}>
-                      <td>{report.name}</td>
+                      <td>
+                        <Link href={`/report/example1`} className="link-dark">
+                          {report.name}
+                        </Link></td>
                       <td>{report.createdAt}</td>
                       <td>
                         <span
@@ -241,15 +250,6 @@ export default function Page() {
                         >
                           {report.status}
                         </span>
-                      </td>
-                      <td>
-                        {report.downloadLink ? (
-                          <a href={report.downloadLink} className="btn btn-sm btn-outline-primary">
-                            Download
-                          </a>
-                        ) : (
-                          <span className="text-muted">—</span>
-                        )}
                       </td>
                     </tr>
                   ))}

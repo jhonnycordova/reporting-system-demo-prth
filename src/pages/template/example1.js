@@ -4,6 +4,7 @@ import { useState } from "react";
 export default function Page() {
   const [deliveryMethod, setDeliveryMethod] = useState("EMAIL");
   const [emails, setEmails] = useState([""]);
+  const [merchantMapping, setMerchantMapping] = useState("");
 
   const addEmail = () => {
     setEmails([...emails, ""]);
@@ -21,29 +22,21 @@ export default function Page() {
     setEmails(updated);
   };
 
-  // Simulación de reports generados con este template
   const generatedReports = [
     {
       id: 101,
-      name: "Juul Report - March",
-      createdAt: "3/01/2024",
-      status: "Completed",
+      name: "Report 1",
+      deliveryMethod: "EMAIL",
+      status: "Active",
       downloadLink: "#",
     },
     {
       id: 102,
-      name: "Juul Report - February",
-      createdAt: "2/01/2024",
-      status: "Completed",
+      name: "Report 4",
+      deliveryMethod: "EMAIL",
+      status: "Active",
       downloadLink: "#",
-    },
-    {
-      id: 103,
-      name: "Juul Report - January",
-      createdAt: "1/01/2024",
-      status: "Failed",
-      downloadLink: null,
-    },
+    }
   ];
 
   return (
@@ -55,7 +48,7 @@ export default function Page() {
       <div className="card-custom mb-4">
         <div className="d-flex justify-content-between align-items-center">
           <div>
-            <h4 className="fw-bold mb-1">Juul Report</h4>
+            <h4 className="fw-bold mb-1">Juul Template</h4>
             <p className="text-muted">Track user engagement and activity levels on a monthly basis</p>
           </div>
         </div>
@@ -75,7 +68,7 @@ export default function Page() {
           </div>
           <div className="col-md-4">
             <div className="border p-3 rounded bg-light">
-              <small className="text-muted">👤  Created By</small>
+              <small className="text-muted">👤 Created By</small>
               <h6 className="fw-normal mt-1">Alice</h6>
             </div>
           </div>
@@ -117,16 +110,17 @@ export default function Page() {
               <div className="modal-body">
                 <form id="reportForm">
                   <div className="mb-3">
-                    <label htmlFor="name" className="form-label">
-                      Name
-                    </label>
+                    <label htmlFor="date" className="form-label">Date</label>
+                    <input type="date" className="form-control" id="date" name="date" required />
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="name" className="form-label">Name</label>
                     <input type="text" className="form-control" id="name" name="name" required />
                   </div>
 
                   <div className="mb-3">
-                    <label htmlFor="merchantId" className="form-label">
-                      Merchant ID
-                    </label>
+                    <label htmlFor="merchantId" className="form-label">Merchant ID</label>
                     <input
                       type="text"
                       className="form-control"
@@ -136,10 +130,24 @@ export default function Page() {
                     />
                   </div>
 
-                  <div className="mb-3">
-                    <label htmlFor="deliveryMethod" className="form-label">
-                      Delivery Method
+                  {/* 🆕 Merchant ID Mapping Field */}
+                  <div className="mb-3 d-flex align-items-center">
+                    <label htmlFor="merchantMapping" className="form-label me-3 mb-0">
+                      Merchant ID Mapping
                     </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="merchantMapping"
+                      name="merchantMapping"
+                      value={merchantMapping}
+                      onChange={(e) => setMerchantMapping(e.target.value)}
+                      placeholder="e.g. merchant_internal_id"
+                    />
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="deliveryMethod" className="form-label">Delivery Method</label>
                     <select
                       className="form-select"
                       id="deliveryMethod"
@@ -147,28 +155,30 @@ export default function Page() {
                       onChange={(e) => setDeliveryMethod(e.target.value)}
                     >
                       <option value="EMAIL">Email</option>
-                      {/* Agrega más métodos aquí si es necesario */}
                     </select>
                   </div>
 
                   <div className="mb-3">
-                    <label htmlFor="frecuency" className="form-label">
-                      Frecuency
-                    </label>
-                    <select
-                      className="form-select"
-                      id="frecuency"
-                    >
+                    <label htmlFor="frequency" className="form-label">Frequency</label>
+                    <select className="form-select" id="frequency">
                       <option value="DAILY">Daily</option>
                       <option value="WEEKLY">Weekly</option>
                       <option value="MONTHLY">Monthly</option>
                     </select>
                   </div>
 
-                  <div className="form-check form-switch">
-                  <input className="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked />
-                  <label className="form-check-label" for="switchCheckChecked">Active?</label>
-                </div>
+                  <div className="form-check form-switch mb-3">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="switchCheckChecked"
+                      defaultChecked
+                    />
+                    <label className="form-check-label" htmlFor="switchCheckChecked">
+                      Active?
+                    </label>
+                  </div>
 
                   {deliveryMethod === "EMAIL" && (
                     <div className="mb-3">
@@ -194,7 +204,11 @@ export default function Page() {
                           </div>
                         ))}
                       </div>
-                      <button type="button" className="btn btn-sm btn-secondary" onClick={addEmail}>
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-secondary"
+                        onClick={addEmail}
+                      >
                         + Add Email
                       </button>
                     </div>
@@ -225,31 +239,25 @@ export default function Page() {
                 <thead className="table-light">
                   <tr>
                     <th>Name</th>
-                    <th>Created At</th>
+                    <th>Delivery Method</th>
                     <th>Status</th>
-                    <th>Download</th>
                   </tr>
                 </thead>
                 <tbody>
                   {generatedReports.map((report) => (
                     <tr key={report.id}>
-                      <td>{report.name}</td>
-                      <td>{report.createdAt}</td>
+                      <td>
+                        <Link href={`/report/example1`} className="link-dark">
+                          {report.name}
+                        </Link>
+                      </td>
+                      <td>{report.deliveryMethod}</td>
                       <td>
                         <span
-                          className={`badge bg-${report.status === "Completed" ? "success" : "danger"}`}
+                          className={`badge bg-${report.status === "Active" ? "success" : "danger"}`}
                         >
                           {report.status}
                         </span>
-                      </td>
-                      <td>
-                        {report.downloadLink ? (
-                          <a href={report.downloadLink} className="btn btn-sm btn-outline-primary">
-                            Download
-                          </a>
-                        ) : (
-                          <span className="text-muted">—</span>
-                        )}
                       </td>
                     </tr>
                   ))}

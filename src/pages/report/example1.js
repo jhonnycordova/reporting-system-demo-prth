@@ -6,12 +6,12 @@ export default function Page() {
   const [name, setName] = useState("Report 1");
   const [frequency, setFrequency] = useState("Monthly");
   const [templateUsed] = useState("TEMPLATE A");
-
   const [deliveryMethod, setDeliveryMethod] = useState("EMAIL");
   const [deliveryEmails, setDeliveryEmails] = useState([
     "marketing@company.com",
     "admin@company.com",
   ]);
+  const [isActive, setIsActive] = useState(true);
 
   const customFields = ["Start Date", "End Date", "User Segment"];
 
@@ -41,6 +41,10 @@ export default function Page() {
       },
     },
   ];
+
+  const toggleActive = () => {
+    setIsActive((prev) => !prev);
+  };
 
   const addEmail = () => {
     setDeliveryEmails([...deliveryEmails, ""]);
@@ -73,13 +77,36 @@ export default function Page() {
         <div className="d-flex justify-content-between align-items-start">
           <div>
             <h4 className="fw-bold mb-1">{name}</h4>
-            <p className="text-muted">Track user engagement and activity levels on a monthly basis</p>
+            <p className="text-muted">
+              Track user engagement and activity levels on a monthly basis
+            </p>
           </div>
           <div className="text-end">
-            <button className="btn btn-outline-secondary btn-sm me-2" onClick={() => setShowEditModal(true)}>
+          <button
+              className="btn btn-outline-primary btn-sm me-2"
+              onClick={() => setShowEditModal(true)}
+            >
+              Run
+            </button>
+            <button
+              className="btn btn-outline-secondary btn-sm me-2"
+              onClick={() => setShowEditModal(true)}
+            >
               ✏️ Edit
             </button>
-            <span className="status-badge">▶ Active</span>
+            <button
+              className={`btn btn-sm ${isActive ? "btn-outline-danger" : "btn-outline-success"} me-2`}
+              onClick={toggleActive}
+            >
+              {isActive ? "Deactivate" : "Activate"}
+            </button>
+            <span
+              className={`badge rounded-pill ${
+                isActive ? "bg-success" : "bg-secondary"
+              }`}
+            >
+              {isActive ? "● Active" : "● Inactive"}
+            </span>
           </div>
         </div>
 
@@ -141,7 +168,7 @@ export default function Page() {
       </div>
 
       <div className="card-custom">
-        <h5 className="fw-bold mb-3">📊 Report History</h5>
+        <h5 className="fw-bold mb-3">📊 Report Execution History </h5>
         <div className="table-responsive">
           <table className="table table-bordered table-hover">
             <thead className="table-light">
@@ -167,7 +194,11 @@ export default function Page() {
                   </td>
                   <td>{entry.status}</td>
                   <td>
-                    <a href={entry.downloadLink} className="btn btn-sm btn-outline-secondary" download>
+                    <a
+                      href={entry.downloadLink}
+                      className="btn btn-sm btn-outline-secondary"
+                      download
+                    >
                       Download
                     </a>
                   </td>
@@ -199,6 +230,16 @@ export default function Page() {
                       type="text"
                       className="form-control"
                       value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">Merchant ID</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={''}
                       onChange={(e) => setName(e.target.value)}
                     />
                   </div>
@@ -257,7 +298,11 @@ export default function Page() {
                   )}
                 </div>
                 <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" onClick={() => setShowEditModal(false)}>
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => setShowEditModal(false)}
+                  >
                     Cancel
                   </button>
                   <button type="submit" className="btn btn-primary">

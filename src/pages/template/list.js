@@ -10,7 +10,7 @@ export default function Page() {
   const reports = [
     {
       id: 1,
-      name: 'Juul Report',
+      name: 'Juul Template',
       description: 'Track user engagement and activity levels on a monthly basis',
       createdDate: '1/14/2024',
       updatedDate: '2/28/2024',
